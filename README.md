@@ -1,6 +1,6 @@
 # Point in Spherical Polygon Algorithm Implementation
 
-This repository contains the software implementation of the algorithm described in the article, "A Robust, Fast, and Accurate Algorithm for Point in Spherical Polygon with Applications in Geoscience and Remote Sensing." The main items of interest in this repository are three scripts in the root directory `comparison_tests.sh`, `mars_tests.sh`, and `tennessee_tests.sh`. Once the code is compiled, these scripts can be run to reproduce the results (runtime measurements, algorithm output) demonstrate in the article on the target system. 
+This repository contains the software implementation of the algorithm described in the article, "A Robust, Fast and Accurate Algorithm for Point in Spherical Polygon with Applications in Geoscience and Remote Sensing." The main items of interest in this repository are three scripts in the root directory `comparison_tests.sh`, `mars_tests.sh`, and `tennessee_tests.sh`. Once the code is compiled, these scripts can be run to reproduce the results (runtime measurements, algorithm output) demonstrated in the article on the target system. 
 
 ## Directory Structure
 ```
@@ -43,7 +43,7 @@ The executable files for the point in spherical polygon routine (PIP.exe) and th
 
 ## Install
 
-Requires: Unix-like operating system, GNU build tools (gcc, make). To run the unit tests, google's unittest library is also a dependency. The unit tests are not necessary to run the software. 
+Requires: Unix-like operating system, GNU build tools (gcc, make). Google's unittest library is a dependency for the unit tests. The unit tests are not necessary to run the software. 
 
 1. Navigate to the `lib/extern` directory and run `make`. 
 2. Navigate to the `lib/lib` directory and run `make`.
@@ -79,10 +79,3 @@ External libraries used:
 ## Questions?
 
 Please contact Ryan Ketzner (rketzner@knights.ucf.edu)
-
-a=1
-for i in *.csv; do
-  new=$(printf "%03d.csv" "$a") #04 pad to length of 4
-  mv -i -- "$i" "$new"
-  let a=a+1
-done
