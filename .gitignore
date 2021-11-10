@@ -1,3 +1,6 @@
 *.o
 *.d
 *.a
+*.exe
+*.csv
+*_Log.txt

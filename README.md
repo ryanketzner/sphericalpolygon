@@ -72,9 +72,9 @@ This work has been funded by grants from the National Aeronautics and Space Admi
 
 External libraries used:
 
-> GMAT2020a `gmatutil` source (https://sourceforge.net/p/gmat/git/ci/GMAT-R2020a/tree/src/gmatutil/)
-> Boost C++ libraries (https://www.boost.org/)
-> JSON for Modern C++ (https://github.com/nlohmann/json)
+* GMAT2020a `gmatutil` source (https://sourceforge.net/p/gmat/git/ci/GMAT-R2020a/tree/src/gmatutil/)
+* Boost C++ libraries (https://www.boost.org/)
+* JSON for Modern C++ (https://github.com/nlohmann/json)
 
 ## Questions?
 
