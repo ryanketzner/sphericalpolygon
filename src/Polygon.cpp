@@ -22,6 +22,16 @@ std::vector<AnglePair> util::csvRead(std::string filename)
 	return vertices;
 }
 
+std::vector<Rvector3> util::sphericalToCartesian(std::vector<AnglePair> spherical)
+{
+	std::vector<Rvector3> cartesian;
+
+	for (int i = 0; i < spherical.size(); i++)
+		cartesian.push_back(sphericalToCartesian(spherical[i]));
+
+	return cartesian;
+}
+
 // Write a vector of booleans to CSV
 void util::csvWrite(std::string filename, std::vector<bool> contained)
 {
