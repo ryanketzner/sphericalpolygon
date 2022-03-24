@@ -19,6 +19,7 @@ namespace util
 
 	AnglePair transformSpherical(const AnglePair &sherical, const Rmatrix33 &transform);
 	bool lonBounded(Real,Real,Real);
+	int latBounded(Real,Real,Real);
 
 	std::vector<AnglePair> csvRead(std::string filename);
 	void csvWrite(std::string filename, std::vector<bool>);

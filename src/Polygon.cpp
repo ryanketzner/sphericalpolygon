@@ -68,13 +68,40 @@ AnglePair util::transformSpherical(const AnglePair &spherical,const Rmatrix33 &t
 	return transformedSpherical;
 }
 
-// Checks wheter a longitude is bounded by the minor arc defined by two other longitudes. 
+// Checks whether a longitude is bounded by the minor arc defined by two other longitudes. 
 bool util::lonBounded(Real bound1, Real bound2, Real lon)
 {
 	if ((bound2 - bound1) < M_PI)
 		return ((lon >= bound1) && (lon <= bound2));
 	else
 		return !((lon >= bound1) && (lon <= bound2));
+}
+
+// Checks whether a latitude is bounded by the minor arc defined by two other latitudes
+int util::latBounded(Real bound1, Real bound2, Real lat)
+{
+	if (bound2 > bound1)
+	{
+		// On edge
+		if (lat >= bound1 && lat <= bound2)
+			return -1;
+		// Passes edge
+		else if (lat > bound2)
+			return 2;
+		// Doesn't pass edge
+		else
+			return -2;
+	}
+	// bound1 > bound2
+	else
+	{
+		if (lat >= bound2 && lat <= bound1)
+			return -1;
+		else if (lat > bound1)
+			return 2;
+		else
+			return -2;
+	}
 }
 
 // Transform from cartesian to spherical coordinates

@@ -82,6 +82,7 @@ TEST_F(Poly_01,Query_02_boundsPoint)
 
 	query = util::transformSpherical(query,QI);
 	Real lon = query[1];
+	Real lat = query[0];
 
 	std::vector<Edge> edgeArray = grapefruit->getEdgeArray();
 
@@ -90,9 +91,9 @@ TEST_F(Poly_01,Query_02_boundsPoint)
 	int i = 0;
 	for (Edge edge : edgeArray)
 	{
-		if (edge.boundsPoint(lon))
+		if (edge.boundsPoint(lon,lat))
 			std::cerr << i;
-		numBounds += edge.boundsPoint(lon);
+		numBounds += edge.boundsPoint(lon,lat);
 		i++;
 	}
 
@@ -100,7 +101,7 @@ TEST_F(Poly_01,Query_02_boundsPoint)
 	EXPECT_EQ(expectedNumBounds,numBounds);
 
 	// Point should be bounded by first edge
-	EXPECT_EQ(1,edgeArray[0].boundsPoint(lon));
+	EXPECT_EQ(1,edgeArray[0].boundsPoint(lon,lat));
 }
 
 TEST_F(Poly_01,Query_02_numCrossings)
@@ -191,6 +192,7 @@ TEST_F(Poly_01,Query_08_boundsPoint)
 
 	query = util::transformSpherical(query,QI);
 	Real lon = query[1];
+	Real lat = query[0];
 
 	std::vector<Edge> edgeArray = grapefruit->getEdgeArray();
 
@@ -199,9 +201,9 @@ TEST_F(Poly_01,Query_08_boundsPoint)
 	int i = 0;
 	for (Edge edge : edgeArray)
 	{
-		if (edge.boundsPoint(lon))
+		if (edge.boundsPoint(lon,lat))
 			std::cerr << i;
-		numBounds += edge.boundsPoint(lon);
+		numBounds += edge.boundsPoint(lon,lat);
 		i++;
 	}
 

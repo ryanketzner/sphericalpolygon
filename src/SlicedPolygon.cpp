@@ -16,8 +16,8 @@ Edge::Edge(Rvector3 cartNode1, Rvector3 cartNode2)
 {
 	pole = Cross(cartNode1,cartNode2);
 	
-	AnglePair node1 = util::cartesianToSpherical(cartNode1);
-	AnglePair node2 = util::cartesianToSpherical(cartNode2);
+	node1 = util::cartesianToSpherical(cartNode1);
+	node2 = util::cartesianToSpherical(cartNode2);
 	
 	// Sets bounds1 to the lesser of the two longitudes
 	if (node1[1] < node2[1])
@@ -36,8 +36,10 @@ Edge::Edge(Rvector3 cartNode1, Rvector3 cartNode2)
 }
 
 // Constructor for an edge using spherical coordinates
-Edge::Edge(AnglePair node1, AnglePair node2)
+Edge::Edge(AnglePair node1in, AnglePair node2in)
 {	
+	node1 = node1in;
+	node2 = node2in;
 	// Sets bounds1 to the lesser of the two longitudes
 	if (node1[1] < node2[1])
 	{
@@ -66,13 +68,24 @@ Edge::~Edge()
 }
 
 // Condition of necessary strike
-bool Edge::boundsPoint(double lon)
+int Edge::boundsPoint(double lon, double lat)
 {
 	
 	if (lon == bound1 || lon == bound2)
 	{	
-		Real delta = std::numeric_limits<double>::min();		
-		return boundsPoint(lon + delta);
+		// std::cerr << "Hit vertex!" << "Bound 1:" << bound1 << "Bound 2:" << bound2 << "Lon:" << lon << std::endl; 
+		if (lon == bound1 && lon == bound2)
+			return util::latBounded(node1[0],node2[0],lat);
+
+
+		// If edge does not cross the 0-360 line, bound2 is leftmost, bound1 is rightmost
+		if ((bound2 - bound1) < M_PI)
+			// Strike is only met if rightmost edge is hit.
+			return (lon == bound1);
+		// If edge does cross the 0-360 line, bound1 is leftmost, bound2 is rightmost
+		else
+			// Strike is only met if rightmost edge is hit
+			return (lon == bound2);
 	}
 
 	return util::lonBounded(bound1,bound2,lon);
@@ -94,10 +107,19 @@ int Edge::crossesBoundary(Rvector3 query)
  		return 0;
  }
 
-int Edge::contains(Rvector3 query, Real lon)
+int Edge::contains(Rvector3 query, Real lon, Real lat)
 {
-	if (boundsPoint(lon))
+	int bounds = boundsPoint(lon, lat);
+
+	if (bounds == 1)
 		return crossesBoundary(query);
+	// Special cases for pq-aligned edge
+	else if (bounds == 2)
+		return 1;
+	else if (bounds == -2)
+		return 0;
+	else if (bounds == -1)
+		return -1;
 	
 	return 0;
 }
@@ -211,12 +233,12 @@ int SlicedPolygon::numCrossings(AnglePair query)
 	for (int index : indices)
 	{
 		Edge edge = this->edgeArray[index];
-		int contained = edge.contains(cartQueryT,sphericalQueryT[1]);
+		int contained = edge.contains(cartQueryT,sphericalQueryT[1],sphericalQueryT[0]);
 
 		if (contained == -1)
 			return -1;
 
-		numCrossings += edge.contains(cartQueryT,sphericalQueryT[1]);
+		numCrossings += contained;
 	}
 	
 	return numCrossings;
