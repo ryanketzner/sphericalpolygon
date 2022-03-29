@@ -73,19 +73,14 @@ int Edge::boundsPoint(double lon, double lat)
 	
 	if (lon == bound1 || lon == bound2)
 	{	
-		// std::cerr << "Hit vertex!" << "Bound 1:" << bound1 << "Bound 2:" << bound2 << "Lon:" << lon << std::endl; 
+		//std::cerr << "Hit vertex!" << "Bound 1:" << bound1 << "Bound 2:" << bound2 << "Lon:" << lon << std::endl; 
 		if (lon == bound1 && lon == bound2)
 			return util::latBounded(node1[0],node2[0],lat);
 
-
-		// If edge does not cross the 0-360 line, bound2 is leftmost, bound1 is rightmost
 		if ((bound2 - bound1) < M_PI)
-			// Strike is only met if rightmost edge is hit.
-			return (lon == bound1);
-		// If edge does cross the 0-360 line, bound1 is leftmost, bound2 is rightmost
-		else
-			// Strike is only met if rightmost edge is hit
 			return (lon == bound2);
+		else
+			return (lon == bound1);
 	}
 
 	return util::lonBounded(bound1,bound2,lon);

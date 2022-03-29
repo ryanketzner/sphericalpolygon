@@ -111,8 +111,8 @@ TEST_F(Poly_01,Query_02_boundsPoint)
 	int i = 0;
 	for (Edge edge : edgeArray)
 	{
-		if (edge.boundsPoint(lon,lat))
-			std::cerr << i;
+		// if (edge.boundsPoint(lon,lat))
+		// 	std::cerr << i;
 		numBounds += edge.boundsPoint(lon,lat);
 		i++;
 	}
@@ -120,8 +120,9 @@ TEST_F(Poly_01,Query_02_boundsPoint)
 	// Point should only be bounded by one edge
 	EXPECT_EQ(expectedNumBounds,numBounds);
 
-	// Point should be bounded by first edge
-	EXPECT_EQ(1,edgeArray[0].boundsPoint(lon,lat));
+	// Point should be bounded by last edge
+	Edge last = edgeArray.back();
+	EXPECT_EQ(1,last.boundsPoint(lon,lat));
 }
 
 TEST_F(Poly_01,Query_02_numCrossings)
@@ -215,8 +216,8 @@ TEST_F(Poly_01,Query_08_boundsPoint)
 	int i = 0;
 	for (Edge edge : edgeArray)
 	{
-		if (edge.boundsPoint(lon,lat))
-			std::cerr << i;
+		// if (edge.boundsPoint(lon,lat))
+		// 	std::cerr << i;
 		numBounds += edge.boundsPoint(lon,lat);
 		i++;
 	}
