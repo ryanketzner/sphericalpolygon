@@ -117,42 +117,6 @@ int main(int argc, char **argv)
     stop = std::chrono::high_resolution_clock::now();
     duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
     std::cout << "Astropy Edge Crossing Time: " << duration.count()/(float)numTests << "\n" << std::endl;
-    
-    // Arithmetic Timing: Bevis
-    double phi_q = M_PI/4;
-    double phi_v1 = M_PI/4;
-    double theta_q = M_PI/4;
-    double theta_v1 = M_PI/4;
-    double lat_diff = phi_q - phi_v1;
-
-    start = std::chrono::high_resolution_clock::now();
-    for (int i = 0; i < numTests; i++)
-    {
-        double num = sin(lat_diff)*cos(theta_q);
-        double denom = sin(theta_q)*cos(theta_v1) - cos(theta_q)*sin(theta_v1)*cos(lat_diff);
-        double theta_q_prime = atan2(num,denom);
-    }
-    stop = std::chrono::high_resolution_clock::now();
-    duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
-    std::cout << "Bevis Arithmetic Time: " << duration.count()/(float)numTests << "\n" << std::endl;
-
-    // Arithmetic Timing: DSPIP
-    double p1 = p_cart[0];
-    double p2 = p_cart[1];
-    double p3 = p_cart[2];
-    double q1 = q_cart[0];
-    double q2 = q_cart[1];
-    double q3 = q_cart[2];
-
-    start = std::chrono::high_resolution_clock::now();
-    for (int i = 0; i < numTests; i++)
-    {
-        double result = p1*q1 + p2*q2 + p3*q3;
-    }
-    stop = std::chrono::high_resolution_clock::now();
-    duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
-    std::cout << "DSPIP Arithmetic Time: " << duration.count()/(float)numTests << "\n" << std::endl;
-
 
     return 0;
 }
