@@ -50,6 +50,16 @@ Requires: Unix-like operating system, GNU build tools (gcc, make). Google's unit
 3. Run `make` from the repo root directory.
 4. Execute `make runtest` to run unit tests and verify basic functionality (optional). All tests should read "PASSED".
 
+## Reproducing Results from the Article
+
+`mars_tests.sh` reproduces results from the Mars polygon test cases (Figures 18 and 19 in the article).
+
+`comparison_tests.sh` reproduces the results from the Tennessee, radiometer, and square sensor test cases (Tables 3 and 4, Figures 13-15).
+
+`memory_tests_no_preprocessing.sh` and `memory_tests.sh` reproduce the results from the memory consumption test case (Figure 16 in the article).
+
+`crossing_tests.sh` reproduces the results from the edge crossing tests in the article (Table 1).
+
 ## License and Copyright
 
 Copyright 2021 Bay Area Environmental Research Institute
