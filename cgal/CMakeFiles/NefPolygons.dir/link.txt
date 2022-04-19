@@ -1,0 +1,1 @@
+/usr/bin/c++     CMakeFiles/NefPolygons.dir/NefPolygons.cpp.o  -o NefPolygons  /home/reno/Documents/sphericalpolygon/lib/extern/gmatutil/libgmatutil.a /home/reno/Documents/sphericalpolygon/build/libpoly.a /usr/lib/x86_64-linux-gnu/libgmpxx.so /usr/lib/x86_64-linux-gnu/libmpfr.so /usr/lib/x86_64-linux-gnu/libgmp.so -pthread 

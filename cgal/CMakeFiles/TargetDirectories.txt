@@ -1,0 +1,5 @@
+/home/reno/Documents/sphericalpolygon/cgal/CMakeFiles/edit_cache.dir
+/home/reno/Documents/sphericalpolygon/cgal/CMakeFiles/rebuild_cache.dir
+/home/reno/Documents/sphericalpolygon/cgal/CMakeFiles/cgal_check_build_system.dir
+/home/reno/Documents/sphericalpolygon/cgal/CMakeFiles/ALL_CGAL_TARGETS.dir
+/home/reno/Documents/sphericalpolygon/cgal/CMakeFiles/NefPolygons.dir
