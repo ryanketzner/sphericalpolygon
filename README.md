@@ -50,6 +50,26 @@ Requires: Unix-like operating system, GNU build tools (gcc, make). Google's unit
 3. Run `make` from the repo root directory.
 4. Execute `make runtest` to run unit tests and verify basic functionality (optional). All tests should read "PASSED".
 
+## Reproducing Results from the Article
+
+`mars_tests.sh` reproduces results from the Mars polygon test cases (Figures 18 and 19 in the article).
+
+`comparison_tests.sh` reproduces the results from the Tennessee, radiometer, and square sensor test cases (Tables 3 and 4, Figures 13-15).
+
+`memory_tests_no_preprocessing.sh` and `memory_tests.sh` reproduce the results from the memory consumption test case (Figure 16 in the article).
+
+`crossing_tests.sh` reproduces the results from the edge crossing tests in the article (Table 1).
+
+## Notes on CGAL Spherical Polygon Package
+
+An attempt was made to validate this software against the CGAL package 5.4.1, "2D Boolean Operations on Nef Polygons Embedded on the Sphere," which provides functionality for operations on spherical polygons including contruction, exploration, and point location. We were unable to produce correct results in some basic test cases using the CGAL code; for instance, the CGAL code incorrectly evaluates the centroid of the TN polygon used as a test case in the article to be outside of its boundary. Since the CGAL package doesn't provide extensive documentation of its point location functions, we were unable to diagnose the issue further, but we have included the code here in case it is of interest to CGAL experts.
+
+This test is available in the `cgal` directory, in the source file `cgal/NefPolygons.cpp`. The code takes the path to an input polygon and runs the CGAL point location algorithm on its centroid and antipode. It also will print some basic information about the polygon which is produced from utilies available in the CGAL package.
+
+The CGAL example can be built using the accompanying CMakeFile. The CGAL library is a dependency for this example, and must be installed prior to build. The executable can be run on any of the polygons in the `examples/testpolygons` folder using the command:
+
+`./NefPolygons <path_to_polygon_file>`
+
 ## License and Copyright
 
 Copyright 2021 Bay Area Environmental Research Institute
