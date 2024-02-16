@@ -96,4 +96,4 @@ External libraries used:
 
 ## Questions?
 
-Please contact Ryan Ketzner (rketzner@knights.ucf.edu)
+Please contact Ryan Ketzner (ketzner@ucf.edu)
